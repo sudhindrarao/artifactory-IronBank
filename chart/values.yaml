@@ -5,7 +5,7 @@
 # Access the values with {{ .Values.key.subkey }}
 
 istio:
-  enabled: true
+  enabled: false
   istio_lb_host: artifactory.jaic.dsop.io
 
 # Common
