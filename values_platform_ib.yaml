@@ -1,0 +1,80 @@
+# Helm chart version: 
+global:
+  imageRegistry: ""
+  imagePullSecrets:
+    - regcred
+  versions: 
+    router: 7.21.5
+    artifactory: 7.21.7 
+    xray: 3.30.2
+
+distribution:
+  enabled: false
+mission-control:
+  enabled: false  
+pipelines:
+  enabled: false
+redis:
+  enabled: false
+
+artifactory-ha: 
+  artifactory:
+    name: artifactory-ha
+    # Note that by default we use appVersion from values.yaml to get image tag/version
+    image:
+      registry: registry1.dso.mil
+      repository: ironbank/jfrog/artifactory/artifactory
+      # tag: 7.21.5
+  installerInfo: '{"productId":"ironbank_helm_artifactory-pro/1.0.0","features":[{"featureId":"Partner/ACC-013116"}]}'
+  nginx:
+    image:
+      registry: releases-docker.jfrog.io
+      repository: jfrog/nginx-artifactory-pro
+
+rabbitmq:
+  image:
+    registry: registry1.dso.mil
+    repository: ironbank/jfrog/jfrog-xray/xray-rabbitmq
+    tag: 3.8.14-debian-10-r32
+    pullSecrets:
+      - regcred
+
+# Use external Postgres installed to the same cluster
+postgresql:
+  enabled: true
+
+xray:
+  enabled: true
+  common:
+    xrayVersion: "3.30.2"
+  analysis:
+    name: xray-analysis
+    ## Note that by default we use appVersion to get image tag/version
+    image:
+      registry: registry1.dso.mil
+      repository: ironbank/jfrog/xray-analysis  # bug in the project, add /frog-xray/ later when changes approved by IB
+  indexer:
+    name: xray-indexer
+    ## Note that by default we use appVersion to get image tag/version
+    image:
+      registry: registry1.dso.mil
+      repository: ironbank/jfrog/jfrog-xray/xray-indexer
+  persist:
+    name: xray-persist
+    ## Note that by default we use appVersion to get image tag/version
+    image:
+      registry: registry1.dso.mil
+      repository: ironbank/jfrog/jfrog-xray/xray-persist
+  router:
+    name: router
+    image:
+      registry: registry1.dso.mil
+      repository: ironbank/jfrog/jfrog-xray/router
+      tag: 7.21.5
+  server:
+    name: xray-server
+    ## Note that by default we use appVersion to get image tag/version
+    image:
+      registry: registry1.dso.mil
+      repository: ironbank/jfrog/jfrog-xray/xray-server
+
