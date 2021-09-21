@@ -11,8 +11,8 @@ global:
   artifactoryHaEnabled: true
   jfrogUrl: '{{ include "jfrog-platform.jfrogUrl" . }}'
   jfrogUrlUI: '{{ include "jfrog-platform.jfrogUrl" . }}'
-  joinKey: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-  masterKey: bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+  joinKey: 664b1d022cb7c56f806145c4132cea57fe96f345b1d27884570ba7c56269dc3c
+  masterKey: b612532dda9bbcc47dae1220c677f1e88630d3abc2f0113c73ab9c0d9be08a78
   ## Chart.AppVersion for each product can be overidden using global.versions.<product>
   ## For example : For artifactory, using global.versions.artifactory
   ## Note: Order of preference is 1) global.versions 2) .Values.artifactory.image.tag 3) Chart.AppVersion
